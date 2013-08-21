@@ -1,0 +1,162 @@
+<html>
+    <head>
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<!--         <meta name="viewport" content="width=device-width" /> -->
+        <style>
+        a {text-decoration:none; color:#0000af}
+        .justify {text-align:justify; line-height: 130%;}
+        .fullimg { width:100%; height:auto} 
+        </style>
+        <script src="jquery.js"></script>
+        <script src="resize.js"></script>
+        <title>Help</title>
+    </head>
+    <body>
+        <font face="Helvetica">
+            <center>
+                <p>
+                    <video width=720 height=405 poster="Refooormat-Introduction-Poster.jpg" controls>
+            <source src="Refooormat-Introduction.mp4" type="video/mp4">
+            Refooormat Introduction Video
+                    </video>
+                </p>
+                <p>
+                    Website: <a href="http://refooorm.at">http://refooorm.at</a>
+                </p>
+            </center>
+            <h3>Overview</h3>
+            <p class="justify">The application consists of two main parts. In the <a href="#library">library</a>, you can store and preview all the images that you retargeted so far. In the <a href="#editor">editor</a>, you can refine and reformat a single image to a new aspect ratio.</p>
+            
+            <h3 id="library">Library</h3>
+            <p><center><img class="fullimg" src="gallery.jpg"></center></p>
+            <p class="justify">To add images to the library, use the two buttons on the top left. You can either take a picture with the built-in camera or choose an image from your camera roll.<br>
+                In order to edit a picture, add it to the gallery and then tap on it. To remove a picture from the gallery, tap and hold on the picture and confirm that you want to delete it.<br>
+                By pinching with two fingers, you can change the size of the thumbnails in the gallery. After the import, the thumbnail will just show the original image. Once you have edited an image the app automatically saves an optimized square thumbnail to use every pixel of your screen.
+            </p>
+            <h3 id="editor">Editor</h3>
+            <p><center><img class="fullimg" src="editor.jpg"></center></p>
+            <p class="jusitfy">This is the place where you can change the aspect ratio of an image and paint the important parts of the image. 
+            You can start by simply painting into the image with a single finger. You will see that the marked regions will get highlighted in white. To change the aspect ratio, you can use two fingers and swipe up and down to retarget the image. You can also choose one of the predefined aspect ratios by tapping on the little icon with the coordinate axis: <img src="ratio@2x.png" height=15px></p>
+            <p class="justify">The following list explains the buttons in the toolbar on the top. On iPhones and iPods, the full list of buttons is only visible in landscape mode.</p>
+            
+                <h4>Toolbar Buttons</h4>
+                from left to right:
+                <ul>
+                <li>
+                    <p class="justify">
+                        <b>Close</b><br>
+                        This button saves your work and brings you back to the gallery.
+                    </p>
+                </li>
+                <li>
+                    <p class="justify">
+                        <img src="settings@2x.png" width="15px"> <b>Settings</b><br>
+                        Here you can define whether the deformation is allowed to crop parts of the images and you can choose the size of the paint brush. The advanced settings give you access to the detailed parameters of the retargeting algorithm.  For instance, you can show the underlying quad grid or enable regularization. Some of the exposed parameters are only for demo purposes to show the inner workings of the underlying algorithm. All of them are preset to values that are working well in most cases. So you should only change them if you want to explore the details of the retargeting algorithm.
+                    </p>
+                </li>
+                <li>
+                    <p class="justify">
+                        <b>Export</b><br>
+                        A tap on this button renders a full resolution retargeted image in the current aspect ratio and saves it to the camera roll, so that you can insert it to emails, blogs, and so on.
+                    </p>
+                </li>
+                <li>
+                    <p class="justify">
+                        <b>Camera</b><br>
+                        Take a new picture and edit it directly. All your work on the current picture will be saved first.
+                    </p>
+                </li>
+                <li>
+                    <p class="justify">
+                        <img src="library@2x.png" width="15px"> <b>Photo Library</b><br>
+                        Choose a picture from your photo library and directly edit it. All your work on the current picture will be saved.
+                    </p>
+                </li>
+                <li>
+                    <p class="justify">
+                        <b>Show / Hide Saliency Map</b><br>
+                        Here you can switch between seeing the following to views:
+                    </p>
+                    <ul>
+                        <li>
+                            <p class="justify">
+                                <img src="show@2x.png" width="15px"> <b>Show Saliency</b><br>
+                                Displays the saliency map on top of the image. You can also see the cropped parts when using the combined view.
+                            </p>      
+                        </li>
+                        <li>
+                            <p class="justify">
+                                <img src="hide@2x.png" width="15px"> <b>Hide Saliency</b><br>
+                                See the optimized retargeted image in all its beauty.
+                            </p>
+                        </li>
+                    </ul>
+                </li>
+                <li>
+                    <p class="justify">
+                        <b>Combined / Split View</b><br>
+                        Here you can switch between seeing the following two views:
+                    </p>
+                    <ul>
+                        <li>
+                            <p class="justify">
+                                <img src="combined@2x.png" width="15px"> <b>Combined View</b><br>
+                                Displays the retargeted image using the whole screen. You can directly paint onto the retargeted image. When showing the saliency, you can also visualize the cropped image parts and paint onto them.
+                            </p>
+                        </li>
+                        <li>
+                            <p class="justify">
+                                <img src="split@2x.png" width="15px"> <b>Split View</b><br>
+                                You can see the image in original and retargeted aspect ratios side by side. To paint saliency, move your finger across the original image.
+                            </p>
+                        </li>
+                    </ul>
+                </li>
+                <li>
+                    <p class="justify">
+                        <img src="ratio@2x.png" width="15px"> <b>Aspect Ratio</b><br>
+                        This palette allows you to choose out of a few predefined aspect ratios. Among them are the classical still picture and widescreen television ratios. You can also go back to the original aspect ratio. At the end of the list, all the ratios needed for the RetargetMe benchmark are provided.
+                    </p>
+                </li>
+                <li>
+                    <p class="justify">
+                        <img src="pen@2x.png" width="15px"> <b>Paint Brush / <img src="eraser@2x.png" width="15px"> Eraser Tools</b><br>
+                        To paint onto the saliency map, make sure that the paint brush is selected here. If you want to remove saliency, tap this button to change between the paint brush and the eraser.
+                    </p>
+                </li>
+                <li>
+                    <p class="justify">
+                        <img src="wizard@2x.png" width="15px"> <b>Magic Wand</b><br>
+                        By clicking the wand button, the app tries to automatically detect salient image parts. The app looks for strong edges and borders and detects faces in the image. You can improve the saliency map by just painting over it. By pressing the wand several times, you can increase the contrast in the saliency map.
+                    </p>
+                </li>
+                <li>
+                    <p class="justify">
+                        <b>Trash Bin</b><br>
+                        You can reset the saliency map to start painting or detecting from scratch.
+                    </p>
+                </li>
+            </ul>
+                
+                <h4>Gestures</h4>
+                <p class="justify">The following gestures are supported in the editor view:</p>
+                <ul>
+                <li>
+                    <p class="justify">Use a single finger to draw or erase on the saliency map.</p>
+                </li>
+                <li>
+                    <p class="justify">Swipe up and down with two fingers to change the aspect ratio of the retargeted image.</p>
+                </li>
+                <li>
+                    <p class="justify">Zoom in and out using a pinch gesture with two fingers. Once you are zoomed in, you can swipe with two fingers to move the picture around.</p>
+                </li>
+                <li>
+                    <p class="justify">Tap with one finger to show / hide the saliency map and preview the cropping.</p>
+                </li>
+                <li>
+                    <p class="justify">Tap with two fingers to zoom out and center the image.</p>
+                </li>
+            </ul>
+        </font>
+    </body>
+</html>
