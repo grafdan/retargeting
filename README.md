@@ -8,13 +8,15 @@ Visit the website of the project for more information: http://refooorm.at
 The app is available in the iOS app store: 
 https://itunes.apple.com/app/refooormat/id650410245
 
-Technical ReadMe
-==============
-Mobile Image Retargeting
-Bachelor Thesis
-Daniel Graf
+This code is released under GPLv3.
+
+Mobile Image Retargeting  
+Bachelor Thesis  
+Daniel Graf  
 grafdan@ethz.ch
 
+Technical ReadMe
+==============
 The Xcode project runs out of the box.
 Just press run to execute it in the iOS simulator
 or choose your connected device (needs code signing).
