@@ -37,26 +37,48 @@
 @synthesize cameraImagePickerPopover = _cameraImagePickerPopover;
 @synthesize settingsPopover = _settingsPopover;
 
+- (BOOL)prefersStatusBarHidden { return YES; }
+
+- (int) toolbarHeight {
+//    if(NSFoundationVersionNumber > NSFoundationVersionNumber_iOS_6_1) return 66;
+    return 44;
+}
+- (int) toolbarOffset {
+//    if(NSFoundationVersionNumber > NSFoundationVersionNumber_iOS_6_1) return 22;
+    return 0;
+}
+
 - (void) setupBackground {
+    self.view.backgroundColor = [UIColor colorWithRed:0.9 green:0.9 blue:0.9 alpha:1.0];
     NSString *path = [[NSBundle mainBundle] pathForResource:@"LinenBackground" ofType:@"png"];
     UIImage * linenBackgroundImage = [[UIImage alloc] initWithContentsOfFile:path];
     UIImageView * backgroundImageView = [[UIImageView alloc] initWithImage:linenBackgroundImage];
     [self.view addSubview:backgroundImageView];
-
 }
+
+
+- (UIBarPosition)positionForBar:(id <UIBarPositioning>)bar {
+    
+    return UIBarPositionTopAttached;
+}
+
 
 - (void) setupToolbar {
     // setup toolbar
-    self.toolbar = [[LibraryToolbar alloc] initWithFrame:CGRectMake(0, 0, self.view.frame.size.width, 44) andLibraryViewController:self];
+    if(NSFoundationVersionNumber > NSFoundationVersionNumber_iOS_6_1) {
+        [self.view setTintColor:[UIColor colorWithRed:0.251 green:0.259 blue:0.408 alpha:1.000]];
+    }
+    self.toolbar = [[LibraryToolbar alloc] initWithFrame:CGRectMake(0, 0, self.view.frame.size.width, [self toolbarHeight]-[self toolbarOffset]) andLibraryViewController:self];
     self.toolbar.autoresizingMask = (UIViewAutoresizingFlexibleWidth);
+    self.toolbar.delegate = self;
     self.toolbar.barStyle = UIBarStyleDefault;
     [self.view addSubview:self.toolbar];
 }
 
 - (void) setupScrollView {
-    CGRect galleryRect = CGRectMake(0,44,
+    CGRect galleryRect = CGRectMake(0,[self toolbarHeight],
                                     self.view.frame.size.width,
-                                    self.view.frame.size.height-44);
+                                    self.view.frame.size.height-[self toolbarHeight]);
     self.galleryView = [[GalleryView alloc] initWithFrame:galleryRect andLibraryViewController:self];
     self.galleryView.autoresizingMask = (UIViewAutoresizingFlexibleWidth |
                                          UIViewAutoresizingFlexibleHeight);
@@ -132,6 +154,7 @@
         UIImagePickerController *controller = [[UIImagePickerController alloc] init];
         
         controller.sourceType = UIImagePickerControllerSourceTypeCamera;
+        
         [controller setMediaTypes:[NSArray arrayWithObject:(NSString *)kUTTypeImage]];
         [controller setDelegate:self];
         self.cameraImagePickerPopover = [self setupImagePickerPopoverOrModalWithPickerController:controller andSender:sender];
@@ -156,7 +179,7 @@
 -(UIPopoverController *) setupImagePickerPopoverOrModalWithPickerController:(UIImagePickerController *)controller
                                                                   andSender:(id)sender
 {
-    if(UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad) {
+    if(UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad && (NSFoundationVersionNumber <= NSFoundationVersionNumber_iOS_6_1)) {
         UIPopoverController * popoverController;
         popoverController = [[UIPopoverController alloc] initWithContentViewController:controller];
         [popoverController setDelegate:self];
@@ -189,7 +212,7 @@
     NSLog(@"did finish picking media");
     
 	UIImage *image = [info objectForKey:@"UIImagePickerControllerOriginalImage"];
-    if(UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad) {
+    if(UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad && (NSFoundationVersionNumber <= NSFoundationVersionNumber_iOS_6_1)) {
         [self dismissAllPopovers];
     } else {
         [picker dismissViewControllerAnimated:YES completion:nil];
@@ -212,7 +235,7 @@
 
 - (void)imagePickerControllerDidCancel:(UIImagePickerController *)picker
 {
-    if(UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad) {
+    if(UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad && (NSFoundationVersionNumber <= NSFoundationVersionNumber_iOS_6_1)) {
         [self dismissAllPopovers];
     } else {
         [picker dismissViewControllerAnimated:YES completion:nil];

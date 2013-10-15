@@ -27,7 +27,6 @@
 #import "ProjectController.h"
 #import "WebViewController.h"
 
-
 @class LibraryToolbar;
 @class GalleryView;
 @class WebViewController;
@@ -37,7 +36,7 @@
 @end
 
 
-@interface LibraryViewController : UIViewController<UIPopoverControllerDelegate,UINavigationControllerDelegate,UIImagePickerControllerDelegate,WebViewDelegateProtocol>
+@interface LibraryViewController : UIViewController<UIPopoverControllerDelegate,UINavigationControllerDelegate,UIImagePickerControllerDelegate,WebViewDelegateProtocol, UIToolbarDelegate>
     
 @property(nonatomic,strong) LibraryToolbar *toolbar;
 @property(nonatomic,strong) GalleryView *galleryView;

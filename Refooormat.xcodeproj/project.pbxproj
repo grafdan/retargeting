@@ -92,6 +92,13 @@
 		D76E3E83165BF3EE00863237 /* LinenBackground.png in Resources */ = {isa = PBXBuildFile; fileRef = D76E3E81165BF3EE00863237 /* LinenBackground.png */; };
 		D7A03F6E16B1F57100202FE3 /* GalleryView.m in Sources */ = {isa = PBXBuildFile; fileRef = D7A03F6D16B1F57100202FE3 /* GalleryView.m */; };
 		D7A03F7216B1F8A800202FE3 /* ThumbnailView.m in Sources */ = {isa = PBXBuildFile; fileRef = D7A03F7116B1F8A800202FE3 /* ThumbnailView.m */; };
+		D7BA4BE518075CC100CFAA4E /* Default-Landscape~ipad-full.png in Resources */ = {isa = PBXBuildFile; fileRef = D7BA4BE318075CC100CFAA4E /* Default-Landscape~ipad-full.png */; };
+		D7BA4BE618075CC100CFAA4E /* Default-Portrait~ipad-full.png in Resources */ = {isa = PBXBuildFile; fileRef = D7BA4BE418075CC100CFAA4E /* Default-Portrait~ipad-full.png */; };
+		D7BA4BEA18075E8800CFAA4E /* apple-touch-icon-76x76-precomposed.png in Resources */ = {isa = PBXBuildFile; fileRef = D7BA4BE718075E8800CFAA4E /* apple-touch-icon-76x76-precomposed.png */; };
+		D7BA4BEB18075E8800CFAA4E /* apple-touch-icon-120x120-precomposed.png in Resources */ = {isa = PBXBuildFile; fileRef = D7BA4BE818075E8800CFAA4E /* apple-touch-icon-120x120-precomposed.png */; };
+		D7BA4BEC18075E8800CFAA4E /* apple-touch-icon-152x152-precomposed.png in Resources */ = {isa = PBXBuildFile; fileRef = D7BA4BE918075E8800CFAA4E /* apple-touch-icon-152x152-precomposed.png */; };
+		D7BA4BEF18075F8D00CFAA4E /* Default-Landscape@2x~ipad-full.png in Resources */ = {isa = PBXBuildFile; fileRef = D7BA4BED18075F8D00CFAA4E /* Default-Landscape@2x~ipad-full.png */; };
+		D7BA4BF018075F8D00CFAA4E /* Default-Portrait@2x~ipad-full.png in Resources */ = {isa = PBXBuildFile; fileRef = D7BA4BEE18075F8D00CFAA4E /* Default-Portrait@2x~ipad-full.png */; };
 		D7BB4140167E706600730737 /* RetargetingImage.m in Sources */ = {isa = PBXBuildFile; fileRef = D7BB413F167E706600730737 /* RetargetingImage.m */; };
 		D7BB4141167E706600730737 /* RetargetingImage.m in Sources */ = {isa = PBXBuildFile; fileRef = D7BB413F167E706600730737 /* RetargetingImage.m */; };
 		D7CA86B0165C4DB6004644C3 /* CombinedPictureView.m in Sources */ = {isa = PBXBuildFile; fileRef = D7CA86AF165C4DB6004644C3 /* CombinedPictureView.m */; };
@@ -251,6 +258,13 @@
 		D7A03F6D16B1F57100202FE3 /* GalleryView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = GalleryView.m; path = View/GalleryView.m; sourceTree = "<group>"; };
 		D7A03F7016B1F8A800202FE3 /* ThumbnailView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ThumbnailView.h; path = View/ThumbnailView.h; sourceTree = "<group>"; };
 		D7A03F7116B1F8A800202FE3 /* ThumbnailView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ThumbnailView.m; path = View/ThumbnailView.m; sourceTree = "<group>"; };
+		D7BA4BE318075CC100CFAA4E /* Default-Landscape~ipad-full.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-Landscape~ipad-full.png"; sourceTree = "<group>"; };
+		D7BA4BE418075CC100CFAA4E /* Default-Portrait~ipad-full.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-Portrait~ipad-full.png"; sourceTree = "<group>"; };
+		D7BA4BE718075E8800CFAA4E /* apple-touch-icon-76x76-precomposed.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "apple-touch-icon-76x76-precomposed.png"; sourceTree = "<group>"; };
+		D7BA4BE818075E8800CFAA4E /* apple-touch-icon-120x120-precomposed.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "apple-touch-icon-120x120-precomposed.png"; sourceTree = "<group>"; };
+		D7BA4BE918075E8800CFAA4E /* apple-touch-icon-152x152-precomposed.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "apple-touch-icon-152x152-precomposed.png"; sourceTree = "<group>"; };
+		D7BA4BED18075F8D00CFAA4E /* Default-Landscape@2x~ipad-full.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-Landscape@2x~ipad-full.png"; sourceTree = "<group>"; };
+		D7BA4BEE18075F8D00CFAA4E /* Default-Portrait@2x~ipad-full.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-Portrait@2x~ipad-full.png"; sourceTree = "<group>"; };
 		D7BB413E167E706600730737 /* RetargetingImage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = RetargetingImage.h; path = Model/RetargetingImage.h; sourceTree = "<group>"; };
 		D7BB413F167E706600730737 /* RetargetingImage.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = RetargetingImage.m; path = Model/RetargetingImage.m; sourceTree = "<group>"; };
 		D7C5B8A01675C02A00E33DC1 /* Types.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Types.h; path = Helper/Types.h; sourceTree = "<group>"; };
@@ -606,6 +620,9 @@
 		D7CF0A16173C43C200483BC4 /* Icons */ = {
 			isa = PBXGroup;
 			children = (
+				D7BA4BE718075E8800CFAA4E /* apple-touch-icon-76x76-precomposed.png */,
+				D7BA4BE818075E8800CFAA4E /* apple-touch-icon-120x120-precomposed.png */,
+				D7BA4BE918075E8800CFAA4E /* apple-touch-icon-152x152-precomposed.png */,
 				D7CF0A17173C43C200483BC4 /* apple-touch-icon-114x114-precomposed.png */,
 				D7CF0A18173C43C200483BC4 /* apple-touch-icon-144x144-precomposed.png */,
 				D7CF0A19173C43C200483BC4 /* apple-touch-icon-57x57-precomposed.png */,
@@ -617,6 +634,10 @@
 		D7CF0A1F173C43D300483BC4 /* LaunchImages */ = {
 			isa = PBXGroup;
 			children = (
+				D7BA4BED18075F8D00CFAA4E /* Default-Landscape@2x~ipad-full.png */,
+				D7BA4BEE18075F8D00CFAA4E /* Default-Portrait@2x~ipad-full.png */,
+				D7BA4BE318075CC100CFAA4E /* Default-Landscape~ipad-full.png */,
+				D7BA4BE418075CC100CFAA4E /* Default-Portrait~ipad-full.png */,
 				D7CF0A20173C43D300483BC4 /* Default-568h@2x.png */,
 				D7CF0A21173C43D300483BC4 /* Default-Landscape@2x~ipad.png */,
 				D7CF0A22173C43D300483BC4 /* Default-Landscape~ipad.png */,
@@ -717,6 +738,11 @@
 			attributes = {
 				LastUpgradeCheck = 0450;
 				ORGANIZATIONNAME = "Daniel Graf";
+				TargetAttributes = {
+					D76E3D7F165B728A00863237 = {
+						DevelopmentTeam = 9RSTWRN8A9;
+					};
+				};
 			};
 			buildConfigurationList = D76E3D7A165B728A00863237 /* Build configuration list for PBXProject "Refooormat" */;
 			compatibilityVersion = "Xcode 3.2";
@@ -747,11 +773,13 @@
 				D7E16F5516D0D86400AD5FC1 /* LinenBackground@2x.png in Resources */,
 				D76D868316D130C40059FB61 /* help.html in Resources */,
 				D76D868516D1369F0059FB61 /* info.html in Resources */,
+				D7BA4BEF18075F8D00CFAA4E /* Default-Landscape@2x~ipad-full.png in Resources */,
 				D7CF0A1B173C43C200483BC4 /* apple-touch-icon-114x114-precomposed.png in Resources */,
 				D7CF0A1C173C43C200483BC4 /* apple-touch-icon-144x144-precomposed.png in Resources */,
 				D7CF0A1D173C43C200483BC4 /* apple-touch-icon-57x57-precomposed.png in Resources */,
 				D7CF0A1E173C43C200483BC4 /* apple-touch-icon-72x72-precomposed.png in Resources */,
 				D7CF0A27173C43D300483BC4 /* Default-568h@2x.png in Resources */,
+				D7BA4BF018075F8D00CFAA4E /* Default-Portrait@2x~ipad-full.png in Resources */,
 				D7CF0A28173C43D300483BC4 /* Default-Landscape@2x~ipad.png in Resources */,
 				D7CF0A29173C43D300483BC4 /* Default-Landscape~ipad.png in Resources */,
 				D7CF0A2A173C43D300483BC4 /* Default-Portrait@2x~ipad.png in Resources */,
@@ -759,6 +787,7 @@
 				D7CF0A2C173C43D300483BC4 /* Default.png in Resources */,
 				D7CF0A2D173C43D300483BC4 /* Default@2x.png in Resources */,
 				D7CF0A47173C43E900483BC4 /* combined.png in Resources */,
+				D7BA4BEA18075E8800CFAA4E /* apple-touch-icon-76x76-precomposed.png in Resources */,
 				D7CF0A48173C43E900483BC4 /* combined@2x.png in Resources */,
 				D7CF0A49173C43E900483BC4 /* eraser.png in Resources */,
 				D7CF0A4A173C43E900483BC4 /* eraser@2x.png in Resources */,
@@ -766,11 +795,15 @@
 				D7CF0A4C173C43E900483BC4 /* help@2x.png in Resources */,
 				D7CF0A4D173C43E900483BC4 /* hide.png in Resources */,
 				D7CF0A4E173C43E900483BC4 /* hide@2x.png in Resources */,
+				D7BA4BE518075CC100CFAA4E /* Default-Landscape~ipad-full.png in Resources */,
+				D7BA4BE618075CC100CFAA4E /* Default-Portrait~ipad-full.png in Resources */,
+				D7BA4BEB18075E8800CFAA4E /* apple-touch-icon-120x120-precomposed.png in Resources */,
 				D7CF0A4F173C43E900483BC4 /* info.png in Resources */,
 				D7CF0A50173C43E900483BC4 /* info@2x.png in Resources */,
 				D7CF0A51173C43E900483BC4 /* library.png in Resources */,
 				D7CF0A52173C43E900483BC4 /* library@2x.png in Resources */,
 				D7CF0A53173C43E900483BC4 /* pen.png in Resources */,
+				D7BA4BEC18075E8800CFAA4E /* apple-touch-icon-152x152-precomposed.png in Resources */,
 				D7CF0A54173C43E900483BC4 /* pen@2x.png in Resources */,
 				D7CF0A55173C43E900483BC4 /* ratio.png in Resources */,
 				D7CF0A56173C43E900483BC4 /* ratio@2x.png in Resources */,
@@ -995,8 +1028,8 @@
 		D76E3DB4165B728B00863237 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				CODE_SIGN_IDENTITY = "iPhone Distribution";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution";
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Retargeting/Refooormat-Prefix.pch";
 				INFOPLIST_FILE = "Retargeting/Refooormat-Info.plist";
@@ -1011,8 +1044,8 @@
 		D76E3DB5165B728B00863237 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				CODE_SIGN_IDENTITY = "iPhone Distribution";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution";
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Retargeting/Refooormat-Prefix.pch";
 				INFOPLIST_FILE = "Retargeting/Refooormat-Info.plist";

@@ -45,8 +45,10 @@
         // Initialization code
         [self initializeToolbar];
     }
+    frame.origin = CGPointMake(0, [UIApplication sharedApplication].statusBarFrame.size.height);
     return self;    
 }
+
 - (void)addSpace:(int)amount toArray:(NSMutableArray *)items {
     //little space
     UIBarButtonItem *space ;

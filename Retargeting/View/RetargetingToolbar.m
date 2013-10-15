@@ -171,7 +171,6 @@
     
     if(UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad ||
        (self.frame.size.width > 320)) { // also show on landscape iPhones
-        
         //saliency toggle
         saliencyToggleButton = [[UIBarButtonItem alloc] init];
         saliencyToggleButton.target = self.retargetingViewController;
@@ -182,8 +181,8 @@
         //space
         [self addSpace:1 toArray:items];
         
-        
-        //layout toggle
+
+      //layout toggle
         layoutToggleButton = [[UIBarButtonItem alloc] init];
         layoutToggleButton.target = self.retargetingViewController;
         layoutToggleButton.action = @selector(toggleLayoutButton);
@@ -204,7 +203,7 @@
                                                      action:@selector(ratioPicker:)]];
     //space
     [self addSpace:1 toArray:items];
-
+    
     //paint toggle
     paintToggleButton = [[UIBarButtonItem alloc] init];
     paintToggleButton.target = self.retargetingViewController;

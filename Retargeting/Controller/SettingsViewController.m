@@ -158,20 +158,28 @@
     // manipulate regularization
     double value = sqrt(sender.value);
     [self.dataSourceAndDelegate setLaplacianRegularizationWeight:value];
-    UITableViewCell *cell = (UITableViewCell *)sender.superview;
+    UITableViewCell *cell;
+    if(NSFoundationVersionNumber > NSFoundationVersionNumber_iOS_6_1) cell = (UITableViewCell *)sender.superview.superview;
+    else cell = (UITableViewCell *)sender.superview;
     cell.detailTextLabel.text = [NSString stringWithFormat:@"Lapl. weight = %.2lf",self.dataSourceAndDelegate.laplacianRegularizationWeight];
 }
 -(IBAction)LFactorSliderChanged:(UISlider *)sender {
     // manipulate LFactor
     double value = sender.value;
     [self.dataSourceAndDelegate setLFactor:value];
-    UITableViewCell *cell = (UITableViewCell *)sender.superview;
+    UITableViewCell *cell;
+    if(NSFoundationVersionNumber > NSFoundationVersionNumber_iOS_6_1) cell = (UITableViewCell *)sender.superview.superview;
+    else cell = (UITableViewCell *)sender.superview;
     cell.detailTextLabel.text = [NSString stringWithFormat:@"LW = %.2lf W'/N",self.dataSourceAndDelegate.LFactor];
 }
 -(IBAction)paintModeSwitchChanged:(UISwitch *)sender {
     bool value = sender.on;
     [self.dataSourceAndDelegate setPaintMode:value];
-    UITableViewCell *cell = (UITableViewCell *)sender.superview;
+    UITableViewCell *cell;
+    if(NSFoundationVersionNumber > NSFoundationVersionNumber_iOS_6_1)
+        cell = (UITableViewCell *)sender.superview.superview;
+    else
+        cell = (UITableViewCell *)sender.superview;
     if(self.dataSourceAndDelegate.paintMode) {
         cell.detailTextLabel.text = @"paint saliency";
     } else {
@@ -182,20 +190,32 @@
     // manipulate brushSize
     double value = round(exp2f(sender.value));
     [self.dataSourceAndDelegate setBrushSize:value];
-    UITableViewCell *cell = (UITableViewCell *)sender.superview;
+    UITableViewCell *cell;
+    if(NSFoundationVersionNumber > NSFoundationVersionNumber_iOS_6_1)
+        cell = (UITableViewCell *)sender.superview.superview;
+    else
+        cell = (UITableViewCell *)sender.superview;
     cell.detailTextLabel.text = [NSString stringWithFormat:@"%.0lf px",self.dataSourceAndDelegate.brushSize];
 }
 -(IBAction)upsamplingFactorChanged:(UISlider *)sender {
     // manipulate upsamplingFactor
     int value = round(sender.value);
     [self.dataSourceAndDelegate setUpsamplingFactor:value];
-    UITableViewCell *cell = (UITableViewCell *)sender.superview;
+    UITableViewCell *cell;
+    if(NSFoundationVersionNumber > NSFoundationVersionNumber_iOS_6_1)
+        cell = (UITableViewCell *)sender.superview.superview;
+    else
+        cell = (UITableViewCell *)sender.superview;
     cell.detailTextLabel.text = [NSString stringWithFormat:@"Spline sampling: %dx",self.dataSourceAndDelegate.upsamplingFactor];
 }
 -(IBAction)showSaliencySwitchChanged:(UISwitch *)sender {
     bool value = sender.on;
     [self.dataSourceAndDelegate setShowSaliency:value];
-    UITableViewCell *cell = (UITableViewCell *)sender.superview;
+    UITableViewCell *cell;
+    if(NSFoundationVersionNumber > NSFoundationVersionNumber_iOS_6_1)
+        cell = (UITableViewCell *)sender.superview.superview;
+    else
+        cell = (UITableViewCell *)sender.superview;
     if(self.dataSourceAndDelegate.showSaliency) {
         cell.detailTextLabel.text = @"show importance map";
     } else {
@@ -205,7 +225,11 @@
 -(IBAction)showGridSwitchChanged:(UISwitch *)sender {
     bool value = sender.on;
     [self.dataSourceAndDelegate setShowGrid:value];
-    UITableViewCell *cell = (UITableViewCell *)sender.superview;
+    UITableViewCell *cell;
+    if(NSFoundationVersionNumber > NSFoundationVersionNumber_iOS_6_1)
+        cell = (UITableViewCell *)sender.superview.superview;
+    else
+        cell = (UITableViewCell *)sender.superview;
     if(self.dataSourceAndDelegate.showGrid) {
         cell.detailTextLabel.text = @"show full image";
     } else {
@@ -215,7 +239,11 @@
 -(IBAction)layoutSwitchChanged:(UISwitch *)sender {
     LayoutType value = sender.on?kLayoutModeCombined:kLayoutModeConcatenateBoth;
     [self.dataSourceAndDelegate setLayoutMode:value];
-    UITableViewCell *cell = (UITableViewCell *)sender.superview;
+    UITableViewCell *cell;
+    if(NSFoundationVersionNumber > NSFoundationVersionNumber_iOS_6_1)
+        cell = (UITableViewCell *)sender.superview.superview;
+    else
+        cell = (UITableViewCell *)sender.superview;
     if(self.dataSourceAndDelegate.layoutMode == kLayoutModeCombined) {
         cell.detailTextLabel.text = @"combined";
     }
@@ -227,7 +255,11 @@
 -(IBAction)motionCompensationSwitchChanged:(UISwitch *)sender {
     bool value = sender.on;
     [self.dataSourceAndDelegate setMotionCompensation:value];
-    UITableViewCell *cell = (UITableViewCell *)sender.superview;
+    UITableViewCell *cell;
+    if(NSFoundationVersionNumber > NSFoundationVersionNumber_iOS_6_1)
+        cell = (UITableViewCell *)sender.superview.superview;
+    else
+        cell = (UITableViewCell *)sender.superview;
     if(self.dataSourceAndDelegate.motionCompensation) {
         cell.detailTextLabel.text = @"compensate movement";
     } else {
@@ -237,7 +269,11 @@
 -(IBAction)cropSwitchChanged:(UISwitch *)sender {
     bool value = sender.on;
     [self.dataSourceAndDelegate setCroppingFlag:value];
-    UITableViewCell *cell = (UITableViewCell *)sender.superview;
+    UITableViewCell *cell;
+    if(NSFoundationVersionNumber > NSFoundationVersionNumber_iOS_6_1)
+        cell = (UITableViewCell *)sender.superview.superview;
+    else
+        cell = (UITableViewCell *)sender.superview;
     if(self.dataSourceAndDelegate.croppingFlag) {
         cell.detailTextLabel.text = @"cropping enabled";
     }
@@ -252,28 +288,44 @@
     // manipulate treshold factor
     double value = sender.value;
     [self.dataSourceAndDelegate setCroppingAlpha:value];
-    UITableViewCell *cell = (UITableViewCell *)sender.superview;
+    UITableViewCell *cell;
+    if(NSFoundationVersionNumber > NSFoundationVersionNumber_iOS_6_1)
+        cell = (UITableViewCell *)sender.superview.superview;
+    else
+        cell = (UITableViewCell *)sender.superview;
     cell.detailTextLabel.text = [NSString stringWithFormat:@"LW' / LW: %.2lf",self.dataSourceAndDelegate.croppingAlpha];
 }
 -(IBAction)croppingBetaChanged:(UISlider *)sender {
     // manipulate ramp factor
     double value = sender.value;
     [self.dataSourceAndDelegate setCroppingBeta:value];
-    UITableViewCell *cell = (UITableViewCell *)sender.superview;
+    UITableViewCell *cell;
+    if(NSFoundationVersionNumber > NSFoundationVersionNumber_iOS_6_1)
+        cell = (UITableViewCell *)sender.superview.superview;
+    else
+        cell = (UITableViewCell *)sender.superview;
     cell.detailTextLabel.text = [NSString stringWithFormat:@"lower ramp: %.2lf",self.dataSourceAndDelegate.croppingBeta];
 }
 -(IBAction)croppingGammaChanged:(UISlider *)sender {
     // manipulate ramp factor
     double value = sender.value;
     [self.dataSourceAndDelegate setCroppingGamma:value];
-    UITableViewCell *cell = (UITableViewCell *)sender.superview;
+    UITableViewCell *cell;
+    if(NSFoundationVersionNumber > NSFoundationVersionNumber_iOS_6_1)
+        cell = (UITableViewCell *)sender.superview.superview;
+    else
+        cell = (UITableViewCell *)sender.superview;
     cell.detailTextLabel.text = [NSString stringWithFormat:@"upper ramp: %.2lf",self.dataSourceAndDelegate.croppingGamma];
 }
 
 -(IBAction)advancedSettingsSwitchLoad:(UISwitch *)sender {
     bool value = sender.on;
     [self setAdvancedSettings:value];
-    UITableViewCell *cell = (UITableViewCell *)sender.superview;
+    UITableViewCell *cell;
+    if(NSFoundationVersionNumber > NSFoundationVersionNumber_iOS_6_1)
+        cell = (UITableViewCell *)sender.superview.superview;
+    else
+        cell = (UITableViewCell *)sender.superview;
     if(value) {
         cell.detailTextLabel.text = @"disable for default parameters";
     }
@@ -428,7 +480,7 @@
             }
             if(indexPath.row == 1) {
                 cell.textLabel.text = @"Brush size";
-                cell.detailTextLabel.text = [NSString stringWithFormat:@"%.0lf px",self.dataSourceAndDelegate.brushSize];
+                //cell.detailTextLabel.text = [NSString stringWithFormat:@"%.0lf px",self.dataSourceAndDelegate.brushSize];
                 UISlider * slider = [self sliderForSettingCellWithMin:log2f(20)
                                                                   max:log2f(200)
                                                          initialValue:log2f(self.dataSourceAndDelegate.brushSize)
@@ -492,7 +544,7 @@
         }
         if(indexPath.row == 2) {
             cell.textLabel.text = @"Brush size";
-            cell.detailTextLabel.text = [NSString stringWithFormat:@"%.0lf px",self.dataSourceAndDelegate.brushSize];
+            //cell.detailTextLabel.text = [NSString stringWithFormat:@"%.0lf px",self.dataSourceAndDelegate.brushSize];
             UISlider * slider = [self sliderForSettingCellWithMin:log2f(20)
                                                               max:log2f(200)
                                                      initialValue:log2f(self.dataSourceAndDelegate.brushSize)

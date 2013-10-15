@@ -48,6 +48,12 @@
 @synthesize projectController = _projectController;
 @synthesize libraryViewController = _libraryViewController;
 
+- (int) toolbarHeight {
+    if(NSFoundationVersionNumber > NSFoundationVersionNumber_iOS_6_1) return 44;
+    return 44;
+}
+- (BOOL)prefersStatusBarHidden { return YES; }
+
 - (void)loadImageWithPath:(NSString *)path {
     [self.retargetingState loadImageFromPath:path];
     [self.warpImageView reloadImage];
@@ -136,9 +142,9 @@
 #pragma mark setup view hierarchy
 - (void)setupRetargetingView {
     self.retargetingView = [[RetargetingView alloc] initWithFrame:CGRectMake(0,
-                                                                             44,
+                                                                             [self toolbarHeight],
                                                                              self.view.frame.size.width,
-                                                                             self.view.frame.size.height-44)];
+                                                                             self.view.frame.size.height-[self toolbarHeight])];
     self.retargetingView.retargetingViewController = self;
     self.retargetingView.autoresizingMask = (UIViewAutoresizingFlexibleWidth |
                                              UIViewAutoresizingFlexibleHeight);
@@ -191,7 +197,11 @@
 
 - (void) setupToolbar {
     // setup toolbar
-    self.toolbar = [[RetargetingToolbar alloc] initWithFrame:CGRectMake(0, 0, self.view.frame.size.width, 44) andRetargetingViewController:self];
+    if(NSFoundationVersionNumber > NSFoundationVersionNumber_iOS_6_1) {
+        [self.view setTintColor:[UIColor colorWithRed:0.251 green:0.259 blue:0.408 alpha:1.000]];
+    }
+
+    self.toolbar = [[RetargetingToolbar alloc] initWithFrame:CGRectMake(0, 0, self.view.frame.size.width, [self toolbarHeight]) andRetargetingViewController:self];
     self.toolbar.autoresizingMask = (UIViewAutoresizingFlexibleWidth);
     self.toolbar.barStyle = UIBarStyleDefault;
     [self.view addSubview:self.toolbar];    
@@ -308,7 +318,7 @@
 -(UIPopoverController *) setupImagePickerPopoverOrModalWithPickerController:(UIImagePickerController *)controller
                                                  andSender:(id)sender
 {
-    if(UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad) {
+    if(UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad && (NSFoundationVersionNumber <= NSFoundationVersionNumber_iOS_6_1)) {
         UIPopoverController * popoverController;
         popoverController = [[UIPopoverController alloc] initWithContentViewController:controller];
         [popoverController setDelegate:self];
@@ -346,7 +356,7 @@
     NSLog(@"did finish picking media");
     
 	UIImage *image = [info objectForKey:@"UIImagePickerControllerOriginalImage"];
-    if(UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad) {
+    if(UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad && (NSFoundationVersionNumber <= NSFoundationVersionNumber_iOS_6_1)) {
         [self dismissAllPopovers];
     } else {
         [picker dismissViewControllerAnimated:YES completion:nil];
@@ -373,7 +383,7 @@
 
 - (void)imagePickerControllerDidCancel:(UIImagePickerController *)picker
 {
-    if(UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad) {
+    if(UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad && (NSFoundationVersionNumber <= NSFoundationVersionNumber_iOS_6_1)) {
         [self dismissAllPopovers];
     } else {
         [picker dismissViewControllerAnimated:YES completion:nil];
@@ -438,14 +448,19 @@
     
     [self.retargetingState automaticSaliency];
 //    [self layoutRetargetingSubviews];
+    [self setShowSaliency:YES];
     [self.combinedView setShowSaliency:self.showSaliency];
+    [self.settingViewController.tableView reloadData];
 
-    [self.saliencyImageView bindSaliencyTexture];
-    [self.saliencyImageView setNeedsDisplay];
-    [self.warpImageView setNeedsDisplay];
-//    [self.combinedContainerView layoutSubviews];
-    [self.combinedView bindSaliencyTexture];
-    [self.combinedView setNeedsDisplay];
+    dispatch_async( dispatch_get_main_queue(), ^{
+        [self.saliencyImageView bindSaliencyTexture];
+        [self.saliencyImageView setNeedsDisplay];
+        [self.warpImageView setNeedsDisplay];
+        [self.combinedView setNeedsDisplay];
+        self.combinedView.needsSaliencyRebind = YES;
+    });
+
+//    //    [self.combinedContainerView layoutSubviews];
     [self layoutRetargetingSubviews];
     
     
@@ -458,11 +473,13 @@
     [self.retargetingState resetSaliency];
     [self layoutRetargetingSubviews];
     [self.saliencyImageView bindSaliencyTexture];
-    [self.saliencyImageView setNeedsDisplay];
-    [self.warpImageView setNeedsDisplay];
+    dispatch_async( dispatch_get_main_queue(), ^{
+        [self.saliencyImageView setNeedsDisplay];
+        [self.warpImageView setNeedsDisplay];
+        [self.combinedView setNeedsDisplay];
+    });
 //    [self.combinedContainerView layoutSubviews];
     [self.combinedView bindSaliencyTexture];
-    [self.combinedView setNeedsDisplay];
 
 }
 
@@ -497,8 +514,10 @@
     self.retargetingState.targetRatio = targetRatio;
     self.retargetingState.targetSize = CGSizeMake(self.retargetingState.targetRatio, 1.0);
     self.retargetingState.needsRecalc = YES;
-    [self.warpImageView setNeedsDisplay];
-    [self.combinedView setNeedsDisplay];
+    dispatch_async( dispatch_get_main_queue(), ^{
+        [self.warpImageView setNeedsDisplay];
+        [self.combinedView setNeedsDisplay];
+    });
     [self layoutRetargetingSubviews]; // we need to layout this late such that we already know what part will be cropped
 }
 - (void)changeTargetRatio:(double)factor {
@@ -542,10 +561,15 @@
     [self.retargetingState paintAtPosition:point];
     [self.retargetingState calculateWarp]; // force it directly to be able to track painting point 
     self.saliencyImageView.needsSaliencyRebind = YES;
+
+    dispatch_async( dispatch_get_main_queue(), ^{
+
     [self.saliencyImageView setNeedsDisplay];
     [self.warpImageView setNeedsDisplay];
-    self.combinedView.needsSaliencyRebind = YES;
     [self.combinedView setNeedsDisplay];
+    self.combinedView.needsSaliencyRebind = YES;
+    });
+
 }
 
 // settings
@@ -556,8 +580,10 @@
 - (void)setLaplacianRegularizationWeight:(double)aLaplacianRegularizationWeight {
     self.retargetingState.laplacianRegularizationWeight = aLaplacianRegularizationWeight;
     self.retargetingState.needsRecalc = YES;
-    [self.warpImageView setNeedsDisplay];
-    [self.combinedView setNeedsDisplay];
+    dispatch_async( dispatch_get_main_queue(), ^{
+        [self.warpImageView setNeedsDisplay];
+        [self.combinedView setNeedsDisplay];
+    });
     [self layoutRetargetingSubviews];
 }
 - (double)LFactor {
@@ -566,8 +592,11 @@
 - (void)setLFactor:(double)aLFactor {
     self.retargetingState.LFactor = aLFactor;
     self.retargetingState.needsRecalc = YES;
-    [self.warpImageView setNeedsDisplay];
-    [self.combinedView setNeedsDisplay];
+    
+    dispatch_async( dispatch_get_main_queue(), ^{
+        [self.warpImageView setNeedsDisplay];
+        [self.combinedView setNeedsDisplay];
+    });
     [self layoutRetargetingSubviews];
 }
 - (bool)paintMode {
@@ -590,8 +619,10 @@
 - (void)setUpsamplingFactor:(int)aFactor {
     self.retargetingState.upsamplingFactor = aFactor;
     self.retargetingState.needsRecalc = YES;
-    [self.warpImageView setNeedsDisplay];
-    [self.combinedView setNeedsDisplay];
+    dispatch_async( dispatch_get_main_queue(), ^{
+        [self.warpImageView setNeedsDisplay];
+        [self.combinedView setNeedsDisplay];
+    });
     [self layoutRetargetingSubviews];
 }
 
@@ -612,13 +643,14 @@
 }
 - (void)setShowSaliency:(bool)aShowSaliency {
     self.retargetingState.showSaliency = aShowSaliency;
+
+    [self.toolbar showSaliencyButton];
     [UIView animateWithDuration:0.7
                           delay:0.0
                         options:UIViewAnimationCurveEaseInOut | UIViewAnimationOptionLayoutSubviews
                      animations:^{
                          [self.combinedView setShowSaliency:self.showSaliency];
                          [self.combinedContainerView layoutSubviews];
-                         [self.toolbar showSaliencyButton];
                          [self.combinedView setNeedsDisplay];
                          [self.saliencyImageView setNeedsDisplay];
                      }
@@ -629,8 +661,10 @@
 }
 - (void)setShowGrid:(bool)aShowGrid {
     self.retargetingState.showGrid = aShowGrid;
-    [self.warpImageView setNeedsDisplay];
-    [self.combinedView setNeedsDisplay];
+    dispatch_async( dispatch_get_main_queue(), ^{
+        [self.warpImageView setNeedsDisplay];
+        [self.combinedView setNeedsDisplay];
+    });
 }
 - (bool)motionCompensation {
     return self.retargetingState.motionCompensation;
@@ -646,10 +680,12 @@
 - (void)setCroppingFlag:(bool)aCroppingFlag {
     self.retargetingState.croppingFlag = aCroppingFlag;
     self.retargetingState.needsRecalc = YES;
-    [self.warpImageView setNeedsDisplay];
+    dispatch_async( dispatch_get_main_queue(), ^{
+        [self.warpImageView setNeedsDisplay];
+        [self.combinedView setNeedsDisplay];
+    });
     [self layoutRetargetingSubviews];
 //    [self.combinedContainerView layoutSubviews];
-    [self.combinedView setNeedsDisplay];
 }
 - (double)croppingAlpha {
     return self.retargetingState.croppingAlpha;
@@ -657,8 +693,10 @@
 - (void)setCroppingAlpha:(double)aCroppingAlpha {
     self.retargetingState.croppingAlpha = aCroppingAlpha;
     self.retargetingState.needsRecalc = YES;
-    [self.warpImageView setNeedsDisplay];
-    [self.combinedView setNeedsDisplay];
+    dispatch_async( dispatch_get_main_queue(), ^{
+        [self.warpImageView setNeedsDisplay];
+        [self.combinedView setNeedsDisplay];
+    });
     [self layoutRetargetingSubviews];
 }
 - (double)croppingBeta {
@@ -667,8 +705,10 @@
 - (void)setCroppingBeta:(double)aCroppingBeta {
     self.retargetingState.croppingBeta = aCroppingBeta;
     self.retargetingState.needsRecalc = YES;
-    [self.warpImageView setNeedsDisplay];
-    [self.combinedView setNeedsDisplay];
+    dispatch_async( dispatch_get_main_queue(), ^{
+        [self.warpImageView setNeedsDisplay];
+        [self.combinedView setNeedsDisplay];
+    });
     [self layoutRetargetingSubviews];
 }
 - (double)croppingGamma {
@@ -677,8 +717,10 @@
 - (void)setCroppingGamma:(double)aCroppingGamma {
     self.retargetingState.croppingGamma = aCroppingGamma;
     self.retargetingState.needsRecalc = YES;
-    [self.warpImageView setNeedsDisplay];
-    [self.combinedView setNeedsDisplay];
+    dispatch_async( dispatch_get_main_queue(), ^{
+        [self.warpImageView setNeedsDisplay];
+        [self.combinedView setNeedsDisplay];
+    });
     [self layoutRetargetingSubviews];
 }
 - (void)setDefaultParameterSettingsWithCropping:(bool)croppingFlag {
@@ -702,7 +744,9 @@
     self.retargetingState.zoomFactor = aFactor;
 //    self.retargetingState.needsRecalc = YES;
     [self layoutRetargetingSubviews];
-    [self.combinedView setNeedsDisplay];
+    dispatch_async( dispatch_get_main_queue(), ^{
+        [self.combinedView setNeedsDisplay];
+    });
 }
 - (void)setZoomFactor:(double)aFactor animated:(bool)animated {
     aFactor = MIN(aFactor, MAX_ZOOM_FACTOR);
